@@ -10,7 +10,7 @@ local app=love -- love alias
 
 function app.load()
   app.window.setTitle("")
-  app.window.setMode(800,600)
+  app.window.setMode(300,300)
 end
 
 require('common')
