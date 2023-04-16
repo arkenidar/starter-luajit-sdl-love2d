@@ -8,11 +8,6 @@ end
 
 local app=love -- love alias
 
-function app.load()
-  app.window.setTitle("")
-  app.window.setMode(300,300)
-end
-
 require('common')
 
 --------------------------------------
@@ -22,6 +17,12 @@ require('common')
 function app.update(dt) update(dt) end
 
 function app.draw() draw() end
+
+function app.load()
+  load()
+  app.window.setTitle("")
+  app.window.setMode(300,300)
+end
 
 function draw_rectangle(rgb, xywh)
   app.graphics.setColor( rgb[1], rgb[2], rgb[3], 1 )

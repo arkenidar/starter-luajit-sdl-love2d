@@ -43,6 +43,8 @@ end
 
 require('common')
 
+load()
+
 local time_ticks = SDL.SDL_GetTicks()
 
 local event = ffi.new("SDL_Event")
