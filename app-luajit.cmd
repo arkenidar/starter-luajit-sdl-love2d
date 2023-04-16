@@ -1,1 +1,1 @@
-luajit app.lua
+start luajit app.lua
