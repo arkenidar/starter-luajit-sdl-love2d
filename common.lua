@@ -1,5 +1,10 @@
 -- common.lua is the core app common to app.lua and main.lua
--- common API is: update, draw, draw_rectangle
+-- common API is: load, update, draw, draw_rectangle
+
+-- https://love2d.org/wiki/love.load
+function load()
+  print("app console")
+end
 
 -- animation 1
 local pulsation_intensity = 1
