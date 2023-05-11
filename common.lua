@@ -44,5 +44,5 @@ function draw()
   -- animation 3
   set_clip_rect(rectangle1_xywh)
   draw_rectangle({1,1,0}, {anim_x,100+25,anim_width,5})
-  set_clip_rect(nil)
+  set_clip_rect()
 end
