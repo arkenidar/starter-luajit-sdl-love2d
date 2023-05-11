@@ -35,8 +35,14 @@ end
 function draw()
   
   -- animation 1
-  draw_rectangle({pulsation_intensity,1-pulsation_intensity,0}, {10+40*pulsation_intensity,50,200,100})
+  local rectangle1_xywh = {10+40*pulsation_intensity,50,200,100}
+  draw_rectangle({pulsation_intensity,1-pulsation_intensity,0}, rectangle1_xywh)
   
   -- animation 2
-  draw_rectangle({1,1,0}, {anim_x,250,anim_width,5})
+  draw_rectangle({1,1,0}, {anim_x,100,anim_width,5})
+
+  -- animation 3
+  set_clip_rect(rectangle1_xywh)
+  draw_rectangle({1,1,0}, {anim_x,100+25,anim_width,5})
+  set_clip_rect(nil)
 end

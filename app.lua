@@ -41,6 +41,10 @@ function draw_rectangle(rgb, xywh)
   SDL.SDL_FillRect(window_surface, rect_from_xywh(xywh), SDL.SDL_MapRGB(window_surface.format,rgb[1],rgb[2],rgb[3]))
 end
 
+function set_clip_rect(xywh)
+  SDL.SDL_SetClipRect(window_surface, rect_from_xywh(xywh))
+end
+
 require('common')
 
 load()
@@ -69,7 +73,7 @@ while looping do
   update(dt) -- update & draw
 
   draw_rectangle({0,0,0}) --clear
-  draw()  
+  draw()
   SDL.SDL_UpdateWindowSurface(window) --present
 
 end

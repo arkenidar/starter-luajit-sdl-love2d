@@ -28,3 +28,11 @@ function draw_rectangle(rgb, xywh)
   app.graphics.setColor( rgb[1], rgb[2], rgb[3], 1 )
   app.graphics.rectangle("fill", xywh[1],xywh[2],xywh[3],xywh[4])
 end
+
+function set_clip_rect(xywh)
+  if xywh==nil then
+    app.graphics.setScissor()
+  else
+    app.graphics.setScissor(xywh[1],xywh[2],xywh[3],xywh[4])
+  end
+end
