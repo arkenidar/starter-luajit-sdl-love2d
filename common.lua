@@ -4,6 +4,16 @@
 -- https://love2d.org/wiki/love.load
 function load()
   print("app console")
+
+  -- OPTIONAL: luasocket for LuaJIT, i.e. Lua 5.1 (LuaJIT internally is 5.1, mostly)
+  -- sudo luarocks install luasocket
+  --[[
+  pamac install lua51 luarocks
+  sudo luarocks --lua-version 5.1 install luasocket
+  luarocks --lua-version 5.1 show luasocket
+  --]]
+  local socket=require("socket") -- love2d bundles this already, luajit not by default
+  print("(optional) socket support")
 end
 
 -- animation 0

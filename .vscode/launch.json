@@ -2,9 +2,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "luajit app.lua",
+            /* lua-local is needed for loading e.g. require("socket") */
+            "name": "lua-local: luajit app.lua (lua-local loads installed modules such as 'socket' module)",
             "request": "launch",
-            "type": "lua",
+            "type": "lua-local", // https://marketplace.visualstudio.com/items?itemName=tomblind.local-lua-debugger-vscode
+
+            "program": {
+                "lua": "luajit", // "lua", "lua5.1" (etc), or "luajit" etc
+                "file": "${workspaceFolder}/app.lua"
+            },
+            "stopOnEntry": false
+        }
+        ,
+        {
+            "name": "lua: luajit app.lua (extension bundles luajit, can't load installed modules -> see lua-local)",
+            "request": "launch",
+            "type": "lua", // https://marketplace.visualstudio.com/items?itemName=actboy168.lua-debug
             "luaVersion": "jit",
             "program": "${workspaceFolder}/app.lua",
             "stopOnEntry": false
