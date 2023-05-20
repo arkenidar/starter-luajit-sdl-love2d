@@ -12,7 +12,7 @@ function load()
   sudo luarocks --lua-version 5.1 install luasocket
   luarocks --lua-version 5.1 show luasocket
   --]]
-  local socket=require("socket") -- love2d bundles this already, luajit not by default
+  --- local socket=require("socket") -- love2d bundles this already, luajit not by default
   print("(optional) socket support")
 end
 
@@ -37,7 +37,7 @@ function update(dt)
   pulsation_intensity= math.abs(math.sin(radiants))
   
   -- animation 1a, 1b
-  local increment_x = 10*dt
+  local increment_x = 50*dt
   anim1_x = anim1_x + increment_x
   if anim1_x > screen_width then anim1_x = -anim_width+(anim1_x%screen_width) end
   
@@ -64,8 +64,12 @@ function draw()
   set_clip_rect()
   
   -- animation 2
-  set_clip_rect(rectangle1_xywh)
-  draw_rectangle({0,0,1}, {anim2_x+rectangle1_xywh[1],100+50,anim_width,5})
-  set_clip_rect()
+  --set_clip_rect(rectangle1_xywh)
+  local rect_inside_x = anim2_x+rectangle1_xywh[1]
+  local x_from, x_to = rect_inside_x, rect_inside_x+anim_width
+  x_from = math.max(x_from , rectangle1_xywh[1])
+  x_to = math.min(x_to , rectangle1_xywh[1]+rectangle1_xywh[3] )
+  draw_rectangle({0,0,1}, { x_from , 100+50 , x_to-x_from , 5 })
+  --set_clip_rect()
 
 end
