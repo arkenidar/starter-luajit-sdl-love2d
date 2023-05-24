@@ -50,11 +50,14 @@ end
 
 -- https://love2d.org/wiki/love.draw
 function draw()
-  
+
+  -- back-ground ellipse formula drawing
+  formula_draw()
+
   -- animation 0
   local rectangle1_xywh = {10+40*pulsation_intensity,50,rectangle1_width,150}
   draw_rectangle({pulsation_intensity,1-pulsation_intensity,0}, rectangle1_xywh)
-  
+
   -- animation 1a
   draw_rectangle({1,1,0}, {anim1_x,100,anim_width,5})
 
@@ -72,4 +75,27 @@ function draw()
   draw_rectangle({0,0,1}, { x_from , 100+50 , x_to-x_from , 5 })
   --set_clip_rect()
 
+end
+
+function formula_draw()
+  local x1=150
+  local y1=180
+  local x2=50
+  local y2=300
+
+  for x=0,500 do
+      for y=0,500 do
+          -- ellipse definition
+          if (
+          2*distance(x,y,x1,y1)+
+          distance(x,y,x2,y2))<300 then
+          ---love.graphics.points({ {x,y} })
+          draw_rectangle({0,0,1}, {x,y})
+          end
+      end
+  end
+end
+
+function distance(x1,y1,x2,y2)
+  return math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
 end
