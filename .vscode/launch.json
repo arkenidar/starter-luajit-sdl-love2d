@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "love . : (Windows) Launch",
+            "type": "cppvsdbg", // https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
+            "request": "launch",
+            "program": "C:\\apps\\love2d\\love.exe",
+            "args": ["${workspaceFolder}"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            //"console": "externalTerminal"
+        }
+        ,
+        {
             /* lua-local is needed for loading e.g. require("socket") */
             "name": "lua-local: luajit app.lua (lua-local loads installed modules such as 'socket' module)",
             "request": "launch",
