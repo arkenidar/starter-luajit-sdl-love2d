@@ -56,7 +56,7 @@ function draw()
 
   -- animation 0
   local rectangle1_xywh = {10+40*pulsation_intensity,50,rectangle1_width,150}
-  draw_rectangle(rectangle1_xywh, {pulsation_intensity,1-pulsation_intensity,0})
+  draw_rectangle(rectangle1_xywh, {pulsation_intensity,1-pulsation_intensity,0, 0.5})
 
   -- animation 1a
   draw_rectangle({anim1_x,100,anim_width,5}, {1,1,0})
