@@ -56,14 +56,14 @@ function draw()
 
   -- animation 0
   local rectangle1_xywh = {10+40*pulsation_intensity,50,rectangle1_width,150}
-  draw_rectangle({pulsation_intensity,1-pulsation_intensity,0}, rectangle1_xywh)
+  draw_rectangle(rectangle1_xywh, {pulsation_intensity,1-pulsation_intensity,0})
 
   -- animation 1a
-  draw_rectangle({1,1,0}, {anim1_x,100,anim_width,5})
+  draw_rectangle({anim1_x,100,anim_width,5}, {1,1,0})
 
   -- animation 1b
   set_clip_rect(rectangle1_xywh)
-  draw_rectangle({1,1,0}, {anim1_x,100+25,anim_width,5})
+  draw_rectangle({anim1_x,100+25,anim_width,5}, {1,1,0})
   set_clip_rect()
   
   -- animation 2
@@ -72,7 +72,7 @@ function draw()
   local x_from, x_to = rect_inside_x, rect_inside_x+anim_width
   x_from = math.max(x_from , rectangle1_xywh[1])
   x_to = math.min(x_to , rectangle1_xywh[1]+rectangle1_xywh[3] )
-  draw_rectangle({0,0,1}, { x_from , 100+50 , x_to-x_from , 5 })
+  draw_rectangle({ x_from , 100+50 , x_to-x_from , 5 }, {0,0,1})
   --set_clip_rect()
 
 end
@@ -90,7 +90,7 @@ function formula_draw()
           2*distance(x,y,x1,y1)+
           distance(x,y,x2,y2))<300 then
           ---love.graphics.points({ {x,y} })
-          draw_rectangle({0,0,1}, {x,y})
+          draw_rectangle({x,y}, {0,0,1})
           end
       end
   end

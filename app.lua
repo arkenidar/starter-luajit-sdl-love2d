@@ -33,7 +33,7 @@ function rect_from_xywh(xywh)
   rect.h = xywh[4] or 1
   return rect
 end
-function draw_rectangle(rgb, xywh)
+function draw_rectangle(xywh, rgb)
   rgb = {
     rgb[1]*255 ,
     rgb[2]*255 ,
@@ -72,7 +72,7 @@ while looping do
   dt = delta_ticks / 1000 -- milliseconds to seconds
   update(dt) -- update & draw
 
-  draw_rectangle({0,0,0}) --clear
+  draw_rectangle(nil, {0,0,0}) --clear
   draw()
   SDL.SDL_UpdateWindowSurface(window) --present
 

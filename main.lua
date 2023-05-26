@@ -24,7 +24,7 @@ function app.load()
   app.window.setMode(300,300)
 end
 
-function draw_rectangle(rgba, xywh)
+function draw_rectangle(xywh, rgba)
   app.graphics.setColor( rgba[1], rgba[2], rgba[3], rgba[4] or 1 )
   app.graphics.rectangle("fill", xywh[1],xywh[2], xywh[3] or 1, xywh[4] or 1 )
 end
