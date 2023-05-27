@@ -45,7 +45,7 @@ function rect_from_xywh(xywh)
 end
 
 --====================================
-common API providers (luajit.org version)
+-- common API providers (luajit.org version)
 --====================================
 
 function set_draw_color(rgba)

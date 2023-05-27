@@ -25,7 +25,7 @@ function app.load()
 end
 
 --====================================
-common API providers (love2d.org version)
+-- common API providers (love2d.org version)
 --====================================
 
 function set_draw_color(rgba)
