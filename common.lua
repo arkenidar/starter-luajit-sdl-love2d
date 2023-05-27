@@ -14,6 +14,8 @@ function load()
   --]]
   --- local socket=require("socket") -- love2d bundles this already, luajit not by default
   print("(optional) socket support")
+
+  image1 = load_image("assets/horse.png")
 end
 
 -- animation 0
@@ -51,11 +53,18 @@ end
 -- https://love2d.org/wiki/love.draw
 function draw()
 
+  draw_rectangle(nil, {173/255, 67/255, 121/255 }) --clear
+
   -- back-ground ellipse formula drawing
   formula_draw()
 
-  -- animation 0
+  -- animation 0a
   local rectangle1_xywh = {10+40*pulsation_intensity,50,rectangle1_width,150}
+
+  -- draw image
+  draw_image(image1, rectangle1_xywh)
+
+  -- animation 0b
   draw_rectangle(rectangle1_xywh, {pulsation_intensity,1-pulsation_intensity,0, 0.5})
 
   -- animation 1a

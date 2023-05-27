@@ -21,6 +21,7 @@ https://gist.github.com/creationix/1213280/a97d7051decb2f1d3e8844186bbff49b64427
 --]]
 ffi.cdef( io.open('ffi_defs.h','r'):read('*a') )
 local SDL = ffi.load('SDL2')
+local SDL_image = ffi.load('SDL2_image')
 
 SDL.SDL_Init(0)
 local render_width, render_height = 300, 300
@@ -32,6 +33,7 @@ window = window[0]
 renderer = renderer[0]
 
 SDL.SDL_SetRenderDrawBlendMode(renderer,SDL.SDL_BLENDMODE_BLEND)
+--SDL.SDL_SetHint( "SDL_RENDER_SCALE_QUALITY", "1" )
 
 function rect_from_xywh(xywh)
   if xywh == nil then return nil end
@@ -42,6 +44,8 @@ function rect_from_xywh(xywh)
   rect.h = xywh[4] or 1
   return rect
 end
+
+--====================================
 
 function set_draw_color(rgba)
   if not rgba then return end
@@ -62,6 +66,16 @@ end
 function set_clip_rect(xywh)
   SDL.SDL_RenderSetClipRect( renderer, rect_from_xywh(xywh) )
 end
+
+function load_image(path)
+  return SDL_image.IMG_LoadTexture(renderer, path)
+end
+
+function draw_image(image, rect_to, rect_from)
+  SDL.SDL_RenderCopy(renderer, image, rect_from_xywh(rect_from), rect_from_xywh(rect_to) )
+end
+
+--====================================
 
 require('common')
 
