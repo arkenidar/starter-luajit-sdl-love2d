@@ -33,7 +33,6 @@ window = window[0]
 renderer = renderer[0]
 
 SDL.SDL_SetRenderDrawBlendMode(renderer,SDL.SDL_BLENDMODE_BLEND)
---SDL.SDL_SetHint( "SDL_RENDER_SCALE_QUALITY", "1" )
 
 function rect_from_xywh(xywh)
   if xywh == nil then return nil end
@@ -45,6 +44,8 @@ function rect_from_xywh(xywh)
   return rect
 end
 
+--====================================
+common API providers (luajit.org version)
 --====================================
 
 function set_draw_color(rgba)
@@ -63,7 +64,7 @@ function draw_rectangle(xywh, rgba)
   SDL.SDL_RenderFillRect( renderer, rect_from_xywh(xywh) )
 end
 
-function set_clip_rect(xywh)
+function set_clip_rectangle(xywh)
   SDL.SDL_RenderSetClipRect( renderer, rect_from_xywh(xywh) )
 end
 
@@ -71,8 +72,8 @@ function load_image(path)
   return SDL_image.IMG_LoadTexture(renderer, path)
 end
 
-function draw_image(image, rect_to, rect_from)
-  SDL.SDL_RenderCopy(renderer, image, rect_from_xywh(rect_from), rect_from_xywh(rect_to) )
+function draw_image_to_rectangle(image, rectangle_to)
+  SDL.SDL_RenderCopy(renderer, image, nil, rect_from_xywh(rectangle_to) )
 end
 
 --====================================
