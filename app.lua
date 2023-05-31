@@ -1,6 +1,8 @@
 -- app.lua is for SDL2 ... (https://libsdl.org/)
 -- ... via LuaJIT's FFI (https://luajit.org/)
 
+--# pamac install luajit sdl2 sdl2_image
+
 if type(jit) ~= 'table' then
   -- not using LuaJIT
   print("USAGE ERROR: run it with LuaJIT (get it at luajit.org)")

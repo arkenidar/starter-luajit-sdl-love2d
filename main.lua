@@ -1,5 +1,7 @@
 -- main.lua is for Love2D (https://love2d.org)
 
+--# pamac install love
+
 if love==nil then
   -- not using Love2D
   print("USAGE ERROR: run it with Love2D (get it at love2d.org)")

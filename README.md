@@ -6,10 +6,13 @@ https://github.com/arkenidar/graphic
 
 | file       | purpose      |
 | ---------- | ------------ |
-| common.lua | common parts |
-| main.lua   | love2d app   |
 | app.lua    | luajit app   |
+| main.lua   | love2d app   |
+| common.lua | common parts |
 
-# launching
+# additional setup (one time)
+- Manjaro: `pamac install luajit sdl2 sdl2_image love`
+
+# launching (from repo folder)
 - launch app.lua with `luajit app.lua`
 - launch main.lua with `love .`

@@ -7,6 +7,8 @@ common API is:
   load_image, draw_image_to_rectangle
 --]]
 
+--# pamac install luajit sdl2 sdl2_image love
+
 -- https://love2d.org/wiki/love.load
 function load()
   print("app console")
