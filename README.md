@@ -11,7 +11,12 @@ https://github.com/arkenidar/graphic
 | common.lua | common parts |
 
 # additional setup (one time)
-- Manjaro: `pamac install luajit sdl2 sdl2_image love`
+- **Manjaro** GNU/Linux:
+    * `pamac install luajit sdl2 sdl2_image`
+    * `pamac install love`
+- MS **Windows**: (**MSYS** with MinGW)
+    * `pacman -S mingw-w64-x86_64-luajit`
+    * `pacman -S mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_image`
 
 # launching (from repo folder)
 - launch app.lua with `luajit app.lua`
