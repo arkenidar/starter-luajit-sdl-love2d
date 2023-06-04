@@ -92,6 +92,7 @@ function draw()
   draw_rectangle({ x_from , 100+50 , x_to-x_from , 5 }, {0,0,1})
   --set_clip_rectangle()
 
+  sliders_draw()
 end
 
 function formula_draw()
@@ -115,4 +116,60 @@ end
 
 function distance(x1,y1,x2,y2)
   return math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
+end
+
+local sliders_left=150
+local sliders_top=10
+local sliders={
+  --        x,            y                width,height  value color
+  red =    {sliders_left, sliders_top,     100,50,       0.75, {1,0,0}},
+  green =  {sliders_left, sliders_top+60,  100,50,       0.75, {0,1,0}},
+  blue =   {sliders_left, sliders_top+120, 100,50,       0.75, {0,0,1}},
+}
+
+function sliders_draw()
+  slider_draw(sliders.red)
+  slider_draw(sliders.green)
+  slider_draw(sliders.blue)
+
+  -- item colored with given values
+  local item_color = {sliders.red[5],sliders.green[5],sliders.blue[5]}
+  set_draw_color({item_color[1],item_color[2],item_color[3]}) -- colored item
+  draw_rectangle({10,sliders_top+0, 50,50}) -- xywh
+  set_draw_color({1,1,1}) -- reset to white
+end
+
+
+function slider_value_update(slider)
+  local x,y,pressed = mouse_position[1],mouse_position[2],mouse_down
+  local slider_handle_width=50
+  if pressed and
+    -- inside slider check
+    x>=(slider[1]-slider_handle_width) and
+      x<=(slider[1]+slider[3]+slider_handle_width) and
+    y>=slider[2] and y<=(slider[2]+slider[4])
+  then
+    -- slider value
+    slider[5] = (x-slider[1])/slider[3]
+    -- clamp it [0..1]
+    slider[5] = math.min(slider[5],1) -- max 1
+    slider[5] = math.max(slider[5],0) -- min 0
+  end
+end
+
+function slider_draw(slider)
+
+  -- slider update
+  slider_value_update(slider)
+
+  -- slider draw
+  local slider_handle_width=10
+  -- background
+  set_draw_color({1,1,1,0.3}) -- white bg
+  draw_rectangle({slider[1], slider[2], slider[3]+slider_handle_width, slider[4]}) -- xywh
+  -- slider
+  local slider_color=slider[6]
+  set_draw_color({slider_color[1],slider_color[2],slider_color[3]}) -- colored slider
+  local sliderx=slider[1]+slider[5]*slider[3]
+	draw_rectangle({sliderx,slider[2], slider_handle_width,slider[4]}) -- xywh
 end
