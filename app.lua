@@ -84,6 +84,9 @@ require('common')
 
 load()
 
+mouse_down=false
+mouse_position={0,0}
+
 local time_ticks = SDL.SDL_GetTicks()
 
 local event = ffi.new("SDL_Event")
@@ -96,6 +99,14 @@ while looping do
     ( event.type == SDL.SDL_KEYDOWN and event.key.keysym.sym == SDL.SDLK_ESCAPE ) 
     then
         looping = false
+    elseif event.type == SDL.SDL_MOUSEBUTTONDOWN then
+      mouse_down = true
+
+    elseif event.type == SDL.SDL_MOUSEBUTTONUP then
+      mouse_down = false
+
+    elseif event.type == SDL.SDL_MOUSEMOTION then
+      mouse_position = {event.button.x, event.button.y}
     end
   end
 

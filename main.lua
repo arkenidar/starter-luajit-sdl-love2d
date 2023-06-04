@@ -16,7 +16,14 @@ require('common')
 -- love2d.org specificities
 --------------------------------------
 
-function app.update(dt) update(dt) end
+mouse_down = false
+mouse_position = {0,0}
+
+function app.update(dt)
+  mouse_down = app.mouse.isDown(1)
+  mouse_position = {app.mouse.getX(), app.mouse.getY()}
+  update(dt)
+end
 
 function app.draw() draw() end
 
@@ -37,7 +44,7 @@ end
 
 function draw_rectangle(xywh, rgba)
   if xywh==nil then
-    xywh = { 0,0, love.graphics.getWidth(), love.graphics.getHeight() }
+    xywh = { 0,0, app.graphics.getWidth(), app.graphics.getHeight() }
   end
   set_draw_color(rgba)
   app.graphics.rectangle("fill", xywh[1],xywh[2], xywh[3] or 1, xywh[4] or 1 )
