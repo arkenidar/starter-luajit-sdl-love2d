@@ -121,20 +121,22 @@ end
 local sliders_left=150
 local sliders_top=10
 local sliders={
-  --        x,            y                width,height  value color
-  red =    {sliders_left, sliders_top,     100,50,       0.75, {1,0,0}},
-  green =  {sliders_left, sliders_top+60,  100,50,       0.75, {0,1,0}},
-  blue =   {sliders_left, sliders_top+120, 100,50,       0.75, {0,0,1}},
+  --        x,            y                 width,height  value color
+  red =    {sliders_left, sliders_top+60*0, 100,50,       0.75, {1,0,0}},
+  green =  {sliders_left, sliders_top+60*1, 100,50,       0.75, {0,1,0}},
+  blue =   {sliders_left, sliders_top+60*2, 100,50,       0.75, {0,0,1}},
+  alpha =  {sliders_left, sliders_top+60*3, 100,50,       0.75, {0,0,0}},
 }
 
 function sliders_draw()
   slider_draw(sliders.red)
   slider_draw(sliders.green)
   slider_draw(sliders.blue)
+  slider_draw(sliders.alpha)
 
   -- item colored with given values
-  local item_color = {sliders.red[5],sliders.green[5],sliders.blue[5]}
-  set_draw_color({item_color[1],item_color[2],item_color[3]}) -- colored item
+  local item_color = {sliders.red[5],sliders.green[5],sliders.blue[5],sliders.alpha[5]}
+  set_draw_color({item_color[1],item_color[2],item_color[3],item_color[4]}) -- colored item
   draw_rectangle({10,sliders_top+0, 50,50}) -- xywh
   set_draw_color({1,1,1}) -- reset to white
 end
