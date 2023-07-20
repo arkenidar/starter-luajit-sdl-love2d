@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "[bundled] love . : (Windows) Launch",
+            "type": "cppvsdbg", // https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
+            "request": "launch",
+            "program": "${workspaceFolder}\\ms-windows-binaries\\love-11.4-win64\\love.exe",
+            "args": ["${workspaceFolder}"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            //"console": "externalTerminal"
+        }
+        ,
+        {
             "name": "love . : (Windows) Launch",
             "type": "cppvsdbg", // https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
             "request": "launch",
