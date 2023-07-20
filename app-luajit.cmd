@@ -1,1 +1,1 @@
-start luajit app.lua
+start %cd%/ms-windows-binaries/luajit_mwindows.exe app.lua
