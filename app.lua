@@ -14,6 +14,7 @@ local ffi = require("ffi")
 https://gist.github.com/creationix/1213280/a97d7051decb2f1d3e8844186bbff49b6442700a
 -- Parse the C API header
 -- It's generated with: gcc -E ffi_defs.c | grep -v '^#' > ffi_defs.h
+--]]
 --[[ ffi_defs.c :
 // this file name: ffi_defs.c
 // gcc -E ffi_defs.c | grep -v '^#' > ffi_defs.h
