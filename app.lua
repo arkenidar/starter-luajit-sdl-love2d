@@ -25,17 +25,26 @@ https://gist.github.com/creationix/1213280/a97d7051decb2f1d3e8844186bbff49b64427
 ffi.cdef( io.open('ffi_defs.h','r'):read('*a') )
 local SDL = ffi.load('SDL2')
 local SDL_image = ffi.load('SDL2_image')
-
-SDL.SDL_Init(0)
+_G=setmetatable(_G, {
+	__index = function(self, index) -- index function CASE
+    if "SDL"==string.sub(index,1,3) then
+      return SDL[index]
+    end
+    if "IMG"==string.sub(index,1,3) then
+      return SDL_image[index]
+    end
+	end
+})
+SDL_Init(0)
 local render_width, render_height = 300, 300
 
 local window = ffi.new("SDL_Window* [1]")
 local renderer = ffi.new("SDL_Renderer* [1]")
-SDL.SDL_CreateWindowAndRenderer( render_width, render_height, 0, window, renderer)
+SDL_CreateWindowAndRenderer( render_width, render_height, 0, window, renderer)
 window = window[0]
 renderer = renderer[0]
 
-SDL.SDL_SetRenderDrawBlendMode(renderer,SDL.SDL_BLENDMODE_BLEND)
+SDL_SetRenderDrawBlendMode(renderer,SDL_BLENDMODE_BLEND)
 
 function rect_from_xywh(xywh)
   if xywh == nil then return nil end
@@ -59,24 +68,24 @@ function set_draw_color(rgba)
     rgba[2]*255 ,
     rgba[3]*255 ,
     rgba[4]*255 }
-  SDL.SDL_SetRenderDrawColor( renderer, rgba[1], rgba[2], rgba[3], rgba[4] )
+  SDL_SetRenderDrawColor( renderer, rgba[1], rgba[2], rgba[3], rgba[4] )
 end
 
 function draw_rectangle(xywh, rgba)
   set_draw_color(rgba)
-  SDL.SDL_RenderFillRect( renderer, rect_from_xywh(xywh) )
+  SDL_RenderFillRect( renderer, rect_from_xywh(xywh) )
 end
 
 function set_clip_rectangle(xywh)
-  SDL.SDL_RenderSetClipRect( renderer, rect_from_xywh(xywh) )
+  SDL_RenderSetClipRect( renderer, rect_from_xywh(xywh) )
 end
 
 function load_image(path)
-  return SDL_image.IMG_LoadTexture(renderer, path)
+  return IMG_LoadTexture(renderer, path)
 end
 
 function draw_image_to_rectangle(image, rectangle_to)
-  SDL.SDL_RenderCopy(renderer, image, nil, rect_from_xywh(rectangle_to) )
+  SDL_RenderCopy(renderer, image, nil, rect_from_xywh(rectangle_to) )
 end
 
 --====================================
@@ -88,25 +97,25 @@ load()
 mouse_down=false
 mouse_position={0,0}
 
-local time_ticks = SDL.SDL_GetTicks()
+local time_ticks = SDL_GetTicks()
 
 local event = ffi.new("SDL_Event")
 
 local looping = true
 while looping do
 
-  while SDL.SDL_PollEvent(event) ~= 0 do
-    if event.type == SDL.SDL_QUIT or
-    ( event.type == SDL.SDL_KEYDOWN and event.key.keysym.sym == SDL.SDLK_ESCAPE ) 
+  while SDL_PollEvent(event) ~= 0 do
+    if event.type == SDL_QUIT or
+    ( event.type == SDL_KEYDOWN and event.key.keysym.sym == SDLK_ESCAPE ) 
     then
         looping = false
-    elseif event.type == SDL.SDL_MOUSEBUTTONDOWN then
+    elseif event.type == SDL_MOUSEBUTTONDOWN then
       mouse_down = true
 
-    elseif event.type == SDL.SDL_MOUSEBUTTONUP then
+    elseif event.type == SDL_MOUSEBUTTONUP then
       mouse_down = false
 
-    elseif event.type == SDL.SDL_MOUSEMOTION then
+    elseif event.type == SDL_MOUSEMOTION then
       mouse_position = {event.button.x, event.button.y}
     end
   end
@@ -114,17 +123,17 @@ while looping do
   if not looping then break end
 
   local dt -- elapsed time in fractions of seconds
-  delta_ticks = SDL.SDL_GetTicks() - time_ticks
-  time_ticks = SDL.SDL_GetTicks()
+  delta_ticks = SDL_GetTicks() - time_ticks
+  time_ticks = SDL_GetTicks()
   dt = delta_ticks / 1000 -- milliseconds to seconds
   update(dt) -- update & draw
 
   draw_rectangle(nil, {0,0,0}) --clear
   draw()
 
-  SDL.SDL_RenderPresent( renderer ) --present
+  SDL_RenderPresent( renderer ) --present
 end
 
-SDL.SDL_DestroyRenderer( renderer )
-SDL.SDL_DestroyWindow(window)
-SDL.SDL_Quit()
+SDL_DestroyRenderer( renderer )
+SDL_DestroyWindow(window)
+SDL_Quit()
