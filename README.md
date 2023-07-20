@@ -21,3 +21,6 @@ https://github.com/arkenidar/graphic
 # launching (from repo folder)
 - launch app.lua with `luajit app.lua`
 - launch main.lua with `love .`
+
+# ZeroBraneStudio tweaks
+path.lua= [[C:\opt\Dropbox\gh-repos\starter-luajit-sdl\ms-windows-binaries\luajit_mconsole.exe]]
