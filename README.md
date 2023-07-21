@@ -17,6 +17,9 @@ https://github.com/arkenidar/graphic
 - MS **Windows**: (**MSYS** with MinGW)
     * `pacman -S mingw-w64-x86_64-luajit`
     * `pacman -S mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_image`
+- **Debian** GNU/Linux:
+    * `sudo apt install love`
+    * `sudo apt install luajit libsdl2-dev libsdl2-image-dev`
 
 # launching (from repo folder)
 - launch app.lua with `luajit app.lua`
