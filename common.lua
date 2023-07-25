@@ -93,6 +93,12 @@ function draw()
   --set_clip_rectangle()
 
   sliders_draw()
+
+  -- rectangle under mouse
+  local x,y,pressed = mouse_position[1],mouse_position[2],mouse_down
+  local size = 15
+  draw_rectangle({ x-size/2 , y-size/2 , size , size }, {1,0,1})
+
 end
 
 function formula_draw()
