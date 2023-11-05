@@ -26,4 +26,5 @@ https://github.com/arkenidar/graphic
 - launch main.lua with `love .`
 
 # ZeroBraneStudio tweaks
-path.lua= [[C:\opt\Dropbox\gh-repos\starter-luajit-sdl\ms-windows-binaries\luajit_mconsole.exe]]
+- path.lua = 'c:/msys64/mingw64/bin/luajit.exe'
+- path.lua= [[C:\opt\Dropbox\gh-repos\starter-luajit-sdl\ms-windows-binaries\luajit_mconsole.exe]]
