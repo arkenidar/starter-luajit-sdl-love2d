@@ -1,7 +1,7 @@
 --[[
 "common.lua" is the core app common to "app.lua" (luajit.org) and "main.lua" (love2d.org).
 common API is:
-  load, update, draw,
+  app_load, update, draw,
   set_draw_color,
   draw_rectangle, set_clip_rectangle,
   load_image, draw_image_to_rectangle
@@ -10,7 +10,7 @@ common API is:
 --# pamac install luajit sdl2 sdl2_image love
 
 -- https://love2d.org/wiki/love.load
-function load()
+function app_load()
   print("app console")
 
   -- OPTIONAL: luasocket for LuaJIT, i.e. Lua 5.1 (LuaJIT internally is 5.1, mostly)

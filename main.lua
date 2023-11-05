@@ -10,7 +10,7 @@ end
 
 local app=love -- love alias
 
-require('common')
+require('common-selector')
 
 --------------------------------------
 -- love2d.org specificities
@@ -22,13 +22,13 @@ mouse_position = {0,0}
 function app.update(dt)
   mouse_down = app.mouse.isDown(1)
   mouse_position = {app.mouse.getX(), app.mouse.getY()}
-  update(dt)
+  if update then update(dt) end
 end
 
 function app.draw() draw() end
 
 function app.load()
-  load()
+  if app_load then app_load() end
   app.window.setTitle("")
   app.window.setMode(300,300)
 end
@@ -42,12 +42,20 @@ function set_draw_color(rgba)
   app.graphics.setColor( rgba[1], rgba[2], rgba[3], rgba[4] or 1 )
 end
 
+function set_draw_color_values(r,g,b,a)
+  set_draw_color({r,g,b,a})
+end
+
 function draw_rectangle(xywh, rgba)
   if xywh==nil then
     xywh = { 0,0, app.graphics.getWidth(), app.graphics.getHeight() }
   end
   set_draw_color(rgba)
   app.graphics.rectangle("fill", xywh[1],xywh[2], xywh[3] or 1, xywh[4] or 1 )
+end
+
+function draw_rectangle_values(x,y,w,h)
+  draw_rectangle({x,y,w,h})
 end
 
 function set_clip_rectangle(xywh)

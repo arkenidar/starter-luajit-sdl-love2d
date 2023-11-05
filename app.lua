@@ -71,9 +71,17 @@ function set_draw_color(rgba)
   SDL_SetRenderDrawColor( renderer, rgba[1], rgba[2], rgba[3], rgba[4] )
 end
 
+function set_draw_color_values(r,g,b,a)
+  set_draw_color({r,g,b,a})
+end
+
 function draw_rectangle(xywh, rgba)
   set_draw_color(rgba)
   SDL_RenderFillRect( renderer, rect_from_xywh(xywh) )
+end
+
+function draw_rectangle_values(x,y,w,h)
+  draw_rectangle({x,y,w,h})
 end
 
 function set_clip_rectangle(xywh)
@@ -90,9 +98,9 @@ end
 
 --====================================
 
-require('common')
+require('common-selector')
 
-load()
+if app_load then app_load() end
 
 mouse_down=false
 mouse_position={0,0}
@@ -126,7 +134,7 @@ while looping do
   delta_ticks = SDL_GetTicks() - time_ticks
   time_ticks = SDL_GetTicks()
   dt = delta_ticks / 1000 -- milliseconds to seconds
-  update(dt) -- update & draw
+  if update then update(dt) end -- update & draw
 
   draw_rectangle(nil, {0,0,0}) --clear
   draw()
