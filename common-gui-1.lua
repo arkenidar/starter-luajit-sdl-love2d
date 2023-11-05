@@ -51,24 +51,24 @@ end
 function handle_draw(handle)
   local xywh=handle
   local r,g,b=1,1,1 -- white color
-  --set_draw_color_values(r,g,b)
+  --set_draw_color{r,g,b}
   ---[[
   if xywh.mouse_grab_offset~=nil then -- if grabbed
-    --set_draw_color_values(1,0,0) -- red color
+    --set_draw_color{1,0,0} -- red color
     r,g,b=1,0,0 -- red color
   end
   --]]
   
-  --draw_rectangle_values(xywh[1], xywh[2], xywh[3], xywh[4]) -- xywh
+  --draw_rectangle{xywh[1], xywh[2], xywh[3], xywh[4]} -- xywh
   
-  set_draw_color_values(0.2,0.2,0.2) -- grey color (border color)
+  set_draw_color{0.2,0.2,0.2} -- grey color (border color)
   -- xywh (area border)
-  draw_rectangle_values(xywh[1], xywh[2], xywh[3], xywh[4])
+  draw_rectangle{xywh[1], xywh[2], xywh[3], xywh[4]}
 
   local border=5
-  set_draw_color_values(r,g,b) -- selected color (inner color)
+  set_draw_color{r,g,b} -- selected color (inner color)
   -- xywh (inner area inside the border)
-  draw_rectangle_values(xywh[1]+border, xywh[2]+border, xywh[3]-border*2, xywh[4]-border*2)
+  draw_rectangle{xywh[1]+border, xywh[2]+border, xywh[3]-border*2, xywh[4]-border*2}
 end
 
 -- methods
@@ -84,7 +84,7 @@ end
 
 
 function draw_formula()
-set_draw_color_values(0,.7,0)
+set_draw_color{0,.7,0}
 --[[
 local x1=150
 local y1=80
@@ -102,7 +102,7 @@ local y2=xywh2[2]+xywh1[4]/2
       if (
       distance(x,y,x1,y1)+
       distance(x,y,x2,y2))<170 then
-        draw_rectangle_values(x,y)
+        draw_rectangle{x,y}
       end
     end
   end
