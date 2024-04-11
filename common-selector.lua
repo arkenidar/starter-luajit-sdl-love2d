@@ -1,7 +1,10 @@
 
 -- select which?
 
-local common_file_name = arg[1] -- require(arg[1])
+-- love . common # require('common')
+-- luajit app.lua common # require('common')
+
+local common_file_name = love and arg[2] or arg[1] -- require(arg[1])
 
 --print(common_file_name)
 
